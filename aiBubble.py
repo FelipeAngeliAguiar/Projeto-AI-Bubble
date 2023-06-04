@@ -64,7 +64,7 @@ def main():
                 texto_pdf += ler_pdf(uploaded_file) + "\n"
 
             # Inicializa o contexto com o texto dos PDFs e o ano atual
-            contexto = texto_pdf + "Ano atual: " + str(datetime.datetime.now().year)
+            contexto = texto_pdf + "Ano atual: " + str(datetime.datetime.now())
 
             # Diminui o tamanho do contexto para ser mais eficiente o uso de tokens
             max_tokens_contexto = 4096 - len(pergunta) - len("\nContexto: ")
