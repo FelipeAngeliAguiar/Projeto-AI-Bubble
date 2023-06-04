@@ -2,6 +2,8 @@ import streamlit as st
 import openai
 import PyPDF2
 import datetime
+import os
+
 
 # FUNÇÃO QUE LÊ O PDF
 def ler_pdf(file):
@@ -11,8 +13,10 @@ def ler_pdf(file):
         text += page.extract_text()
     return text
 
+
 # API CHAT GPT
-openai.api_key = "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"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+
 
 def obter_resposta(pergunta, contexto):
     resposta = openai.Completion.create(
@@ -21,7 +25,7 @@ def obter_resposta(pergunta, contexto):
         max_tokens=500,
         n=1,
         stop=None,
-        temperature=0.4   #define a imaginação dele
+        temperature=0.4  # define a imaginação dele
     )
     resposta_texto = resposta.choices[0].text.strip()
 
@@ -35,6 +39,7 @@ def obter_resposta(pergunta, contexto):
             return resposta_texto[:ultimo_ponto + 1]  # Retorna a resposta até o último ponto final encontrado
         else:
             return resposta_texto  # Retorna a resposta original caso não encontre um ponto final
+
 
 def main():
     st.title("Projeto AÍ/Bubble")
@@ -71,6 +76,7 @@ def main():
             # Exibe a resposta
             st.write("Resposta do Chatbot: ")
             st.write(resposta)
+
 
 if __name__ == "__main__":
     main()
