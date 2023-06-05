@@ -1,0 +1,75 @@
+<!-- pergunta.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projeto AÍ/Bubble</title>
+    <style>
+        /* Estilos CSS para o cabeçalho */
+        .header {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .header-button {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #ddd;
+        }
+
+        /* Estilos CSS para a resposta */
+        .resposta {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Manipulador de evento para o envio do formulário
+            $("form").submit(function(event) {
+                event.preventDefault();  // Impede o comportamento padrão do envio do formulário
+                var pergunta = $("#pergunta").val();  // Obtém a pergunta do campo de texto
+                var formData = new FormData($(this)[0]);  // Cria um objeto FormData com os dados do formulário
+
+                // Requisição AJAX para enviar a pergunta e os arquivos PDF
+                $.ajax({
+                    url: "/pergunta",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(resposta) {
+                        // Exibe a resposta na página
+                        $(".resposta").html("<h3>Resposta do Chatbot:</h3><p>" + resposta + "</p>");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="header-button">Home</a>
+        <a href="/pergunta" class="header-button">Fazer uma pergunta</a>
+    </div>
+    <h1>Faça uma pergunta sobre os PDFs</h1>
+
+    <!-- Formulário para enviar a pergunta e os arquivos PDF -->
+    <form>
+        <label for="pergunta">Pergunta:</label><br>
+        <input type="text" id="pergunta" name="pergunta"><br><br>
+        <label for="pdf_files">Carregue os seus arquivos PDF:</label><br>
+        <input type="file" id="pdf_files" name="pdf_files" multiple accept=".pdf"><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <!-- Div para exibir a resposta -->
+    <div class="resposta"></div>
+</body>
+</html>
