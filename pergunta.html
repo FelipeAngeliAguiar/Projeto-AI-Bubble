@@ -1,34 +1,14 @@
-<!-- pergunta.html -->
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Projeto AÍ/Bubble</title>
-    <style>
-        /* Estilos CSS para o cabeçalho */
-        .header {
-            background-color: #f0f0f0;
-            padding: 10px;
-        }
-
-        .header-button {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #000;
-            padding: 5px 10px;
-            border-radius: 4px;
-            background-color: #ddd;
-        }
-
-        /* Estilos CSS para a resposta */
-        .resposta {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto</title>
+    <link rel="stylesheet" href="css/css.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function() {
             // Manipulador de evento para o envio do formulário
@@ -54,10 +34,12 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <a href="/" class="header-button">Home</a>
-        <a href="/pergunta" class="header-button">Fazer uma pergunta</a>
-    </div>
+    <header class="cabecalho">
+        <nav class="header">
+            <a href="index.html" class="header-button">Home</a>
+            <a href="pergunta.html" class="header-button">Pergunta</a>
+        </nav>
+    </header>
     <h1>Faça uma pergunta sobre os PDFs</h1>
 
     <!-- Formulário para enviar a pergunta e os arquivos PDF -->
